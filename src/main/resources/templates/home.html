@@ -1,95 +1,97 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Travel Management System</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/home.css" rel="stylesheet">
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById('empNo').value = '';
-        });
-         document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById('empNo').value = '';
+  <meta charset="UTF-8">
+  <title>Travel Management System</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/home.css" rel="stylesheet">
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById('empNo').value = '';
+    });
+     document.addEventListener("DOMContentLoaded", function() {
+        // Clear the empNo field on page load
+        document.getElementById('empNo').value = '';
 
-            const inputs = document.querySelectorAll('input, textarea');
-            inputs.forEach(input => {
-                input.addEventListener('click', function() {
-                    const successMessage = document.getElementById('successMessage');
-                    if (successMessage) {
-                        successMessage.style.display = 'none';
-                    }
-                });
+        // Add event listener to input fields to hide success message on click
+        const inputs = document.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('click', function() {
+                const successMessage = document.getElementById('successMessage');
+                if (successMessage) {
+                    successMessage.style.display = 'none';
+                }
             });
         });
-    </script>
+    });
+  </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <!-- Brand -->
-    <a class="navbar-brand" href="#">Travel Management System</a>
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Travel Management System</a>
 
-    <!-- Toggler/collapsibe Button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <!-- Navbar links -->
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/home}">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="#">Report</a>
-            </li>
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/home}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/report}">Report</a>
+      </li>
 
-        </ul>
-    </div>
+    </ul>
+  </div>
 </nav>
 <div class="container mt-5">
-    <div id="successMessage" th:if="${successMessage}" class="alert alert-success">
-        <p th:text="${successMessage}"></p>
-    </div>
-    <div class="container mt-5">
-        <h2> Travel Form</h2>
-        <form th:action="@{/home}" method="POST" th:object="${user}">
-            <div class="form-row">
-                <div class="form-group col">
-                    <label for="empNo">Employee Number:</label>
-                    <input type="number" class="form-control no-arrows" th:field="*{empNo}" id="empNo" name="empNo" required>
-                </div>
-                <div class="form-group col">
-                    <label for="empName">Employee Name:</label>
-                    <input type="text" class="form-control" id="empName" th:field="*{empName}" name="empName" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col">
-                    <label for="startDate">Start Date:</label>
-                    <input type="date" class="form-control" id="startDate" th:field="*{startDate}" name="startDate" required>
-                </div>
-                <div class="form-group col">
-                    <label for="endDate">End Date:</label>
-                    <input type="date" class="form-control" id="endDate" th:field="*{endDate}" name="endDate" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="destination">Destination:</label>
-                <input type="text" class="form-control" id="destination" th:field="*{destination}" name="destination" required>
-            </div>
-            <div class="form-group">
-                <label for="purpose">Purpose:</label>
-                <textarea class="form-control" id="purpose" name="purpose" th:field="*{purpose}" rows="3" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <div id="successMessage" th:if="${successMessage}" class="alert alert-success">
+    <p th:text="${successMessage}"></p>
+  </div>
+  <div class="container mt-5">
+    <h2> Travel Form</h2>
+    <form th:action="@{/home}" method="POST" th:object="${user}">
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="empNo">Employee Number:</label>
+          <input type="number" class="form-control no-arrows" th:field="*{empNo}" id="empNo" name="empNo" required>
+        </div>
+        <div class="form-group col">
+          <label for="empName">Employee Name:</label>
+          <input type="text" class="form-control" id="empName" th:field="*{empName}" name="empName" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <label for="startDate">Start Date:</label>
+          <input type="date" class="form-control" id="startDate" th:field="*{startDate}" name="startDate" required>
+        </div>
+        <div class="form-group col">
+          <label for="endDate">End Date:</label>
+          <input type="date" class="form-control" id="endDate" th:field="*{endDate}" name="endDate" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="destination">Destination:</label>
+        <input type="text" class="form-control" id="destination" th:field="*{destination}" name="destination" required>
+      </div>
+      <div class="form-group">
+        <label for="purpose">Purpose:</label>
+        <textarea class="form-control" id="purpose" name="purpose" th:field="*{purpose}" rows="3" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>
