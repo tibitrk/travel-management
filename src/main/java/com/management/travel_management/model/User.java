@@ -1,12 +1,15 @@
 package com.management.travel_management.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 import java.sql.Date;
 
 @Entity
+@Table(name="tour_details")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int empNo;
     private String empName;
