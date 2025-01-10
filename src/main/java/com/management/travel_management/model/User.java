@@ -18,15 +18,6 @@ public class User {
     private String destination;
     private String purpose;
 
-    public User(Long id, int empNo, String empName, Date startDate, Date endDate, String destination, String purpose) {
-        this.id = id;
-        this.empNo = empNo;
-        this.empName = empName;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.destination = destination;
-        this.purpose = purpose;
-    }
 
     public String getPurpose() {
         return purpose;
