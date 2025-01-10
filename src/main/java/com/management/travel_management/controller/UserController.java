@@ -25,7 +25,7 @@ public class UserController {
     public String userEntry(Model model, User user, RedirectAttributes redirectAttributes) {
         model.addAttribute("user", user);
         userService.userEntry(user);
-        redirectAttributes.addFlashAttribute("successMessage", "Travel details successfully updated");
+        redirectAttributes.addFlashAttribute("successMessage", "Travel details updated successfully ");
         return "redirect:/home";
     }
 
