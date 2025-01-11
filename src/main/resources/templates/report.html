@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Management System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Travel Management System</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/home}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/report}">Report</a>
+            </li>
+        </ul>
+    </div>
+</nav><br>
+<div class="container">
+    <h2>Travel Report</h2><br>
+    <div class="form-group">
+        <form th:action="@{/report}" method="get">
+            <label for="search">Search Emp No:</label>
+            <input list="search" name="empNo" id="searchs">
+            <datalist id="search">
+                <option th:each="user : ${user}" th:value="${user.empNo}"></option>
+            </datalist>
+            <label for="startDate">Select Start Date:</label>
+            <input type="Date"  name="startDate" id="startDate">
+            <label for="endDate">Select End Date:</label>
+            <input type="Date" name="endDate" id="endDate">
+            <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+    </div>
+    <br>
+    <table class="table table-bordered">
+        <thead>
+        <tr class="align">
+            <th scope="col">Emp No</th>
+            <th scope="col">Emp Name</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Destination</th>
+            <th scope="col">Purpose</th>
+        </tr>
+        </thead>
+        <tbody class="align">
+        <tr th:each="user : ${user}">
+            <td th:text="${user.empNo}"></td>
+            <td th:text="${user.empName}"></td>
+            <td th:text="${#dates.format(user.startDate, 'dd-MM-yyyy')}"></td>
+            <td th:text="${#dates.format(user.endDate, 'dd-MM-yyyy')}"></td>
+            <td th:text="${user.destination}"></td>
+            <td th:text="${user.purpose}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
