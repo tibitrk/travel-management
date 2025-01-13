@@ -55,7 +55,7 @@ public class UserController {
         model.addAttribute("user", users);
         return "report";
     }
-    @GetMapping("/report/edit{id}")
+    @GetMapping("/report/edit/{id}")
     public String editReport(@PathVariable Long id, Model model){
         model.addAttribute("user", userService.userById(id));
         return "edit_report";
@@ -75,6 +75,11 @@ public class UserController {
         u.setPurpose(user.getPurpose());
 
         userService.updateUser(u);
+        return "redirect:/report";
+    }
+    @GetMapping("/report/{id}")
+    public String deleteUser(@PathVariable Long id){
+        userService.deleteUserById(id);
         return "redirect:/report";
     }
 
