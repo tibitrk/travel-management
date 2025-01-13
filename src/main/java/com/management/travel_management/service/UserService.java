@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -25,6 +26,12 @@ public class UserService {
     }
     public List<User> getUserFromDates(Date startDate, Date endDate){
         return userRepository.findAllByRangeDate(startDate,endDate);
+    }
+    public Optional<User> userById(Long id){
+        return userRepository.findById(id);
+    }
+    public User updateUser(User user){
+        return userRepository.save(user);
     }
 
 

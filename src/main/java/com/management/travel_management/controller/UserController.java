@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -53,6 +54,28 @@ public class UserController {
 
         model.addAttribute("user", users);
         return "report";
+    }
+    @GetMapping("/report/edit{id}")
+    public String editReport(@PathVariable Long id, Model model){
+        model.addAttribute("user", userService.userById(id));
+        return "edit_report";
+    }
+
+    @PostMapping("/report/{id}")
+    public String updateUser(@PathVariable Long id, Model model, User user){
+        model.addAttribute("user", userService.updateUser(user));
+
+        User u = new User();
+        u.setId(id);
+        u.setEmpNo(user.getEmpNo());
+        u.setEmpName(user.getEmpName());
+        u.setStartDate(user.getStartDate());
+        u.setEndDate(user.getEndDate());
+        u.setDestination(user.getDestination());
+        u.setPurpose(user.getPurpose());
+
+        userService.updateUser(u);
+        return "redirect:/report";
     }
 
 
