@@ -33,7 +33,7 @@
 </nav>
 <div class="container mt-5">
     <h2> Update Form</h2>
-    <form th:action="@{/report/{id} (id=${user.id})}" method="POST" th:object="${user}">
+    <form th:action="@{/report/{id}(id=${user.id})}" method="POST" th:object="${user}">
         <div class="form-row">
             <div class="form-group col">
                 <label for="empNo">Employee Number:</label>

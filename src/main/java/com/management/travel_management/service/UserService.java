@@ -27,8 +27,8 @@ public class UserService {
     public List<User> getUserFromDates(Date startDate, Date endDate){
         return userRepository.findAllByRangeDate(startDate,endDate);
     }
-    public Optional<User> userById(Long id){
-        return userRepository.findById(id);
+    public User userById(Long id){
+        return userRepository.findById(id).get();
     }
     public User updateUser(User user){
         return userRepository.save(user);
