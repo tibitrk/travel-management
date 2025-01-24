@@ -21,6 +21,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/login")
+    public String getLogin(){
+        return "login";
+    }
+
     @GetMapping("/home")
     public String getHome(Model model){
         User newUser = new User();
