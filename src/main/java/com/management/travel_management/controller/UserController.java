@@ -1,6 +1,8 @@
 package com.management.travel_management.controller;
 
+import com.management.travel_management.model.Login;
 import com.management.travel_management.model.User;
+import com.management.travel_management.service.LoginService;
 import com.management.travel_management.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,10 +23,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/login")
-    public String getLogin(){
-        return "login";
-    }
+
 
     @GetMapping("/home")
     public String getHome(Model model){
