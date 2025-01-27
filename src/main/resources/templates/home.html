@@ -41,11 +41,11 @@
       <div class="form-row">
         <div class="form-group col">
           <label for="empNo">Employee Number:</label>
-          <input type="number" class="form-control no-arrows" th:field="*{empNo}" id="empNo" name="empNo" required>
+          <input type="number" class="form-control no-arrows" th:value="${empNo}" id="empNo" name="empNo" readonly>
         </div>
         <div class="form-group col">
           <label for="empName">Employee Name:</label>
-          <input type="text" class="form-control" id="empName" th:field="*{empName}" name="empName" required>
+          <input type="text" class="form-control" id="empName" th:value="${uName}" name="empName" readonly>
         </div>
       </div>
       <div class="form-row">

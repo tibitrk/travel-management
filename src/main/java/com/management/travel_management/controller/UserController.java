@@ -4,6 +4,8 @@ import com.management.travel_management.model.Login;
 import com.management.travel_management.model.User;
 import com.management.travel_management.service.LoginService;
 import com.management.travel_management.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -26,9 +28,17 @@ public class UserController {
 
 
     @GetMapping("/home")
-    public String getHome(Model model){
+    public String getHome(Model model, HttpServletRequest request){
         User newUser = new User();
         model.addAttribute("user", newUser);
+
+        HttpSession session = request.getSession();
+        int empNo = (int) session.getAttribute("empNo");
+        String uName = (String) session.getAttribute("uName");
+
+        model.addAttribute("empNo", empNo);
+        model.addAttribute("uName", uName);
+
         return "home";
     }
     @PostMapping("/home")

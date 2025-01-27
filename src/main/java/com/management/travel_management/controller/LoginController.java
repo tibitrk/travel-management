@@ -2,6 +2,8 @@ package com.management.travel_management.controller;
 
 import com.management.travel_management.model.Login;
 import com.management.travel_management.service.LoginService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,11 +23,13 @@ public class LoginController {
         return "login";
     }
     @PostMapping("/login")
-    public String getLogin(@RequestParam int empNo, @RequestParam String password, Model model) {
-        System.out.println("emp no " + empNo);
-        System.out.println("password " + password);
+    public String getLogin(@RequestParam int empNo, @RequestParam String password, Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
         Login login = loginService.validateUser(empNo);
         if (login !=null && login.getPassword().equals(password)) {
+            session.setAttribute("empNo", empNo);
+            String username = login.getUsername();
+            session.setAttribute("uName", username);
             return "redirect:/home";
         } else {
             model.addAttribute("error", "Invalid Employee Number or Password");
