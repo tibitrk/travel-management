@@ -14,4 +14,7 @@ public class LoginService {
     public Login validateUser(int empNo) {
         return loginRepository.findUser(empNo);
     }
+    public Login loginEntry(Login login){
+      return  loginRepository.save(login);
+    }
 }

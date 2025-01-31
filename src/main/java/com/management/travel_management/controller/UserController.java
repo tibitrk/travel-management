@@ -33,7 +33,7 @@ public class UserController {
         model.addAttribute("user", newUser);
 
         HttpSession session = request.getSession();
-        String empNo = (String) session.getAttribute("empNo");
+        int empNo = (int) session.getAttribute("empNo");
         String uName = (String) session.getAttribute("uName");
 
         model.addAttribute("empNo", empNo);
