@@ -51,5 +51,9 @@ public class LoginController {
         model.addAttribute("success", "Registration successful!");
         return "login";
     }
-
+    @GetMapping("/logout")
+  public String logOut( Model model){
+        model.addAttribute("logout", "LogOut Successful!");
+        return "login";
+  }
 }
