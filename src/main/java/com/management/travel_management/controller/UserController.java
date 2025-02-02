@@ -54,8 +54,8 @@ public class UserController {
                          @DateTimeFormat(pattern = "dd-MM-yyyy") Date startDate,
                          @RequestParam(name = "end_date", required = false)
                              @DateTimeFormat(pattern = "dd-MM-yyyy") Date endDate,
-                         Model model){
-
+                         Model model, HttpSession session){
+      int no = (int) session.getAttribute("empNo");
         List<User> users;
         if (empNo != null) {
             users = userService.getUserByEmpNo(empNo);
@@ -63,7 +63,7 @@ public class UserController {
            users = userService.getUserFromDates(startDate,endDate);
 
         } else {
-            users = userService.getAllUsers();
+            users = userService.getUserByEmpNo(no);
         }
 
         model.addAttribute("user", users);

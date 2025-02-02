@@ -35,6 +35,7 @@ public class LoginController {
             model.addAttribute("error", "Invalid Employee Number or Password");
             return "login";
         }
+
     }
     @GetMapping("/register")
     public String getReg(){
