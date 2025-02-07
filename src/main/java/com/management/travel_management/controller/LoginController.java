@@ -43,10 +43,13 @@ public class LoginController {
     }
     @PostMapping("/register")
     public String insertReg(@RequestParam("empNo") int empNo,@RequestParam("empName") String empName,
+                            @RequestParam("designation") String designation,@RequestParam("email") String email,
                             @RequestParam("password") String password, Model model){
         Login login = new Login();
         login.setEmpNo(String.valueOf(empNo));
         login.setUsername(empName);
+        login.setDesignation(designation);
+        login.setEmail(email);
         login.setPassword(password);
         loginService.loginEntry(login);
         model.addAttribute("success", "Registration successful!");

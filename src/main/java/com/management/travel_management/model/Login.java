@@ -11,6 +11,25 @@ public class Login {
     private String username;
     private String empNo;
     private String password;
+    private String designation;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
+
+    private String email;
 
     public int getId() {
         return id;
