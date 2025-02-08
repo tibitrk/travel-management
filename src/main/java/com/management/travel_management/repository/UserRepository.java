@@ -19,4 +19,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "select * from tour_entry where emp_no = ?1",nativeQuery = true)
     List<User> reportByEmpNo(@Param("emp_no") int empNo);
 
+
 }

@@ -7,11 +7,12 @@ import jakarta.persistence.Id;
 public class Login {
 
     @Id
-    private int id;
+
     private String username;
     private String empNo;
     private String password;
     private String designation;
+    private String email;
 
     public String getEmail() {
         return email;
@@ -29,15 +30,7 @@ public class Login {
         this.designation = designation;
     }
 
-    private String email;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;

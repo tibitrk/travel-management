@@ -56,13 +56,21 @@ public class UserController {
                              @DateTimeFormat(pattern = "dd-MM-yyyy") Date endDate,
                          Model model, HttpSession session){
       int no = (int) session.getAttribute("empNo");
+      String des = (String) session.getAttribute("designation");
+      System.out.println("des " + des);
+
         List<User> users;
+
         if (empNo != null) {
             users = userService.getUserByEmpNo(empNo);
         } else if(startDate != null || endDate != null){
            users = userService.getUserFromDates(startDate,endDate);
 
-        } else {
+        } else if("Manager".equals(des) || "HR".equals(des)){
+           users = userService.getAllUsers();
+            model.addAttribute("user", users);
+            return "admin_report";
+        }else{
             users = userService.getUserByEmpNo(no);
         }
 
