@@ -47,7 +47,7 @@ public class LoginController {
                             @RequestParam("designation") String designation,@RequestParam("email") String email,
                             @RequestParam("password") String password, Model model){
         Login login = new Login();
-        login.setEmpNo(String.valueOf(empNo));
+        login.setEmpNo(empNo);
         login.setUsername(empName);
         login.setDesignation(designation);
         login.setEmail(email);

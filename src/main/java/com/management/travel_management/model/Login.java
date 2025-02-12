@@ -9,7 +9,7 @@ public class Login {
     @Id
 
     private String username;
-    private String empNo;
+    private int empNo;
     private String password;
     private String designation;
     private String email;
@@ -40,11 +40,11 @@ public class Login {
         this.username = username;
     }
 
-    public String getEmpNo() {
+    public int getEmpNo() {
         return empNo;
     }
 
-    public void setEmpNo(String empNo) {
+    public void setEmpNo(int empNo) {
         this.empNo = empNo;
     }
 

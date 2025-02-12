@@ -57,7 +57,6 @@ public class UserController {
                          Model model, HttpSession session){
       int no = (int) session.getAttribute("empNo");
       String des = (String) session.getAttribute("designation");
-      System.out.println("des " + des);
 
         List<User> users;
 
