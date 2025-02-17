@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
@@ -50,14 +52,27 @@ public class UserController {
     }
     @GetMapping("/report")
     public String getAll(@RequestParam(required = false) Integer empNo,
-                         @RequestParam(name = "start_date", required = false)
-                         @DateTimeFormat(pattern = "dd-MM-yyyy") Date startDate,
-                         @RequestParam(name = "end_date", required = false)
-                             @DateTimeFormat(pattern = "dd-MM-yyyy") Date endDate,
+                         @RequestParam(name = "startDate", required = false) String startDateStr,
+                         @RequestParam(name = "endDate", required = false) String endDateStr,
                          Model model, HttpSession session){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = null;
+        Date endDate = null;
+        try {
+            if (startDateStr != null && !startDateStr.isEmpty()) {
+                startDate = new Date(sdf.parse(startDateStr).getTime());
+            }
+            if (endDateStr != null && !endDateStr.isEmpty()) {
+                endDate = new Date(sdf.parse(endDateStr).getTime());
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
       int no = (int) session.getAttribute("empNo");
       String des = (String) session.getAttribute("designation");
 
+        System.out.println("startDate " + startDate);
+        System.out.println("endDate " + endDate);
         List<User> users;
 
         if (empNo != null) {
