@@ -6,14 +6,23 @@ import jakarta.persistence.Id;
 @Entity
 public class Login {
 
-    @Id
 
+
+    @Id
+    private Long id;
     private String username;
     private int empNo;
     private String password;
     private String designation;
     private String email;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     public String getEmail() {
         return email;
     }
