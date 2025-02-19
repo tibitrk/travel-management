@@ -46,6 +46,11 @@ public class LoginController {
     public String insertReg(@RequestParam("empNo") int empNo,@RequestParam("empName") String empName,
                             @RequestParam("designation") String designation,@RequestParam("email") String email,
                             @RequestParam("password") String password, Model model){
+        Login log = loginService.validateUser(empNo);
+        if(log !=null){
+            model.addAttribute("error", "Employee Number already exists!");
+            return "registration";
+        }
         Login login = new Login();
         login.setEmpNo(empNo);
         login.setUsername(empName);

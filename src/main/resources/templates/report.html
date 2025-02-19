@@ -37,11 +37,7 @@
     <h2>Travel Report</h2><br>
     <div class="form-group">
         <form th:action="@{/report}" method="get">
-            <label for="search">Search Emp No:</label>
-            <input list="search" name="empNo" id="searchs">
-            <datalist id="search">
-                <option th:each="user : ${user}" th:value="${user.empNo}"></option>
-            </datalist>
+
             <label for="startDate">Select Start Date:</label>
             <input type="Date"  name="startDate" id="startDate">
             <label for="endDate">Select End Date:</label>
