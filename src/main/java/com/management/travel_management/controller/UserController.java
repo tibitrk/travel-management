@@ -1,13 +1,10 @@
 package com.management.travel_management.controller;
 
-import com.management.travel_management.model.Login;
 import com.management.travel_management.model.User;
-import com.management.travel_management.service.LoginService;
 import com.management.travel_management.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
