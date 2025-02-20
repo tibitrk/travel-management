@@ -114,6 +114,12 @@ public class UserController {
         userService.deleteUserById(id);
         return "redirect:/report";
     }
+    @PostMapping("/status/{empNo}")
+    public String updateStatus(@PathVariable("empNo") int empNo, RedirectAttributes redirectAttributes){
+      int status=   userService.updateStatusById(empNo);
 
+      redirectAttributes.addFlashAttribute("success","Approved Successfully");
+      return "redirect:/report";
+   }
 
 }

@@ -1,8 +1,9 @@
 package com.management.travel_management.repository;
 
-import com.management.travel_management.model.Login;
 import com.management.travel_management.model.User;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -18,6 +19,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(value = "select * from tour_details where emp_no = ?1",nativeQuery = true)
     List<User> reportByEmpNo(@Param("emp_no") int empNo);
+
+    @Modifying
+    @Transactional
+    @Query(value = "update tour_details set approval_status = 1  where emp_no = ?1",nativeQuery = true)
+    int updateStatus(@Param("emp_no")int empNo);
 
 
 }

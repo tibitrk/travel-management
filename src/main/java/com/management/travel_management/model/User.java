@@ -17,6 +17,17 @@ public class User {
     private Date endDate;
     private String destination;
     private String purpose;
+    private int approvalStatus;
+
+    public int getApprovalStatus() {
+        return approvalStatus;
+    }
+
+    public void setApprovalStatus(int approvalStatus) {
+        this.approvalStatus = approvalStatus;
+    }
+
+
 
 
     public String getPurpose() {

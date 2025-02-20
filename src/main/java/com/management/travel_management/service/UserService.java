@@ -3,6 +3,7 @@ package com.management.travel_management.service;
 import com.management.travel_management.model.Login;
 import com.management.travel_management.model.User;
 import com.management.travel_management.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,11 @@ public class UserService {
     }
     public void deleteUserById(Long id){
         userRepository.deleteById(id);
+    }
+
+    @Transactional
+    public int updateStatusById(int empNo){
+       return  userRepository.updateStatus(empNo);
     }
 
 

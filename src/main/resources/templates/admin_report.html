@@ -8,7 +8,9 @@
 
 </head>
 <body>
-
+<div th:if="${success}" class="alert alert-success text-center fixed-top m-0">
+  <p th:text="${success}"></p>
+</div>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
   <!-- Brand -->
   <a class="navbar-brand" href="#">Travel Management System</a>
@@ -75,7 +77,10 @@
         <form th:action="@{/report/{id}(id=${user.id})}" method="get" style="display:inline;">
           <button type="submit" class="btn btn-danger">Cancel</button>
         </form>
-        <a  class="btn btn-secondary">Approve</a>
+        <form th:action="@{/status/{empNo}(empNo=${user.empNo})}" method="post" style="display:inline;">
+          <button type="submit" class="btn btn-secondary">Approve</button>
+        </form>
+
       </td>
     </tr>
     </tbody>
