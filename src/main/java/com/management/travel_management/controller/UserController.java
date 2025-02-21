@@ -82,6 +82,8 @@ public class UserController {
             return "admin_report";
         }else{
             users = userService.getUserByEmpNo(no);
+            model.addAttribute("user", users);
+            return "report";
         }
 
         model.addAttribute("user", users);
@@ -120,6 +122,13 @@ public class UserController {
 
       redirectAttributes.addFlashAttribute("success","Approved Successfully");
       return "redirect:/report";
+   }
+   @GetMapping("/report-admin")
+   public String getAdminReport(Model model, HttpSession session){
+       int no = (int) session.getAttribute("empNo");
+        List<User> users = userService.getUserByEmpNo(no);
+        model.addAttribute("user",users);
+        return "my_report";
    }
 
 }

@@ -42,11 +42,6 @@
   <h2>Travel Report</h2><br>
   <div class="form-group">
     <form th:action="@{/report-admin}" method="get">
-      <label for="search">Search Emp No:</label>
-      <input list="search" name="empNo" id="searchs">
-      <datalist id="search">
-        <option th:each="user : ${user}" th:value="${user.empNo}"></option>
-      </datalist>
       <label for="startDate">Select Start Date:</label>
       <input type="Date"  name="startDate" id="startDate">
       <label for="endDate">Select End Date:</label>
@@ -58,8 +53,6 @@
   <table class="table table-bordered">
     <thead>
     <tr class="align">
-      <th scope="col">Emp No</th>
-      <th scope="col">Emp Name</th>
       <th scope="col">Start Date</th>
       <th scope="col">End Date</th>
       <th scope="col">Destination</th>
@@ -69,14 +62,14 @@
     </thead>
     <tbody class="align">
     <tr th:each="user : ${user}">
-      <td th:text="${user.empNo}"></td>
-      <td th:text="${user.empName}"></td>
+      <td th:text="${user.empNo}" hidden></td>
+      <td th:text="${user.empName}" hidden></td>
       <td th:text="${#dates.format(user.startDate, 'dd-MM-yyyy')}"></td>
       <td th:text="${#dates.format(user.endDate, 'dd-MM-yyyy')}"></td>
       <td th:text="${user.destination}"></td>
       <td th:text="${user.purpose}"></td>
       <td>
-
+        <a th:href="@{/report/edit/{id}(id=${user.id})}" class="btn btn-primary">Update</a>
         <form th:action="@{/report/{id}(id=${user.id})}" method="get" style="display:inline;">
           <button type="submit" class="btn btn-danger">Cancel</button>
         </form>

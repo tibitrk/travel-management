@@ -49,8 +49,6 @@
     <table class="table table-bordered">
         <thead>
         <tr class="align">
-            <th scope="col">Emp No</th>
-            <th scope="col">Emp Name</th>
             <th scope="col">Start Date</th>
             <th scope="col">End Date</th>
             <th scope="col">Destination</th>
@@ -60,8 +58,8 @@
         </thead>
         <tbody class="align">
         <tr th:each="user : ${user}">
-            <td th:text="${user.empNo}"></td>
-            <td th:text="${user.empName}"></td>
+            <td th:text="${user.empNo}" hidden></td>
+            <td th:text="${user.empName}" hidden></td>
             <td th:text="${#dates.format(user.startDate, 'dd-MM-yyyy')}"></td>
             <td th:text="${#dates.format(user.endDate, 'dd-MM-yyyy')}"></td>
             <td th:text="${user.destination}"></td>
