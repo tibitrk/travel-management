@@ -76,12 +76,12 @@
       <td th:text="${user.destination}"></td>
       <td th:text="${user.purpose}"></td>
       <td>
-
-        <form th:action="@{/report/{id}(id=${user.id})}" method="get" style="display:inline;">
-          <button type="submit" class="btn btn-danger">Cancel</button>
-        </form>
-        <form th:action="@{/status/{empNo}(empNo=${user.empNo})}" method="post" style="display:inline;">
+        <form th:action="@{/status/{id}(id=${user.id})}" method="post" style="display:inline;">
           <button type="submit" class="btn btn-secondary">Approve</button>
+        </form>
+
+        <form th:action="@{/reject/{id}(id=${user.id})}" method="post" style="display:inline;">
+          <button type="submit" class="btn btn-danger">Cancel</button>
         </form>
 
       </td>

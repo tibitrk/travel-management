@@ -116,9 +116,9 @@ public class UserController {
         userService.deleteUserById(id);
         return "redirect:/report";
     }
-    @PostMapping("/status/{empNo}")
-    public String updateStatus(@PathVariable("empNo") int empNo, RedirectAttributes redirectAttributes){
-      int status=   userService.updateStatusById(empNo);
+    @PostMapping("/status/{id}")
+    public String updateStatus(@PathVariable("id") Long id, RedirectAttributes redirectAttributes){
+      int status=   userService.updateStatusById(id);
 
       redirectAttributes.addFlashAttribute("success","Approved Successfully");
       return "redirect:/report";
@@ -130,5 +130,12 @@ public class UserController {
         model.addAttribute("user",users);
         return "my_report";
    }
+    @PostMapping("/reject/{id}")
+    public String updateRejectStatus(@PathVariable("id") Long id, RedirectAttributes redirectAttributes){
+        int status=   userService.updateRejectById(id);
+
+        redirectAttributes.addFlashAttribute("success","Rejected Successfully");
+        return "redirect:/report";
+    }
 
 }

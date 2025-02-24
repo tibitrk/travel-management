@@ -39,10 +39,13 @@ public class UserService {
     }
 
     @Transactional
-    public int updateStatusById(int empNo){
-       return  userRepository.updateStatus(empNo);
+    public int updateStatusById(Long id){
+       return  userRepository.updateStatus(id);
     }
-
+    @Transactional
+    public int updateRejectById(Long id){
+        return  userRepository.updateReject(id);
+    }
 
 
 }

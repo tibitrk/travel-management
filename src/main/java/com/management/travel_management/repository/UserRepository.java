@@ -22,8 +22,13 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "update tour_details set approval_status = 1  where emp_no = ?1",nativeQuery = true)
-    int updateStatus(@Param("emp_no")int empNo);
+    @Query(value = "update tour_details set approval_status = 1  where id = ?1",nativeQuery = true)
+    int updateStatus(@Param("emp_no")Long id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "update tour_details set approval_status = 0  where id = ?1",nativeQuery = true)
+    int updateReject(@Param("id")Long id);
 
 
 }
