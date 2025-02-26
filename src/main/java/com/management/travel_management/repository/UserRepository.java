@@ -17,8 +17,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "select * from tour_details where tour_details.start_date >= :start_date AND tour_details.end_date <= :end_date", nativeQuery = true)
     List<User> findAllByRangeDate(@Param("start_date") Date startDate, @Param("end_date") Date endDate);
 
-    @Query(value = "select * from tour_details where emp_no = ?1",nativeQuery = true)
-    List<User> reportByEmpNo(@Param("emp_no") int empNo);
+    @Query(value = "select * from tour_details where approval_status = 0",nativeQuery = true)
+    List<User> listByEmpNo();
 
     @Modifying
     @Transactional

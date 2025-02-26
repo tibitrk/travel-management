@@ -124,11 +124,44 @@ public class UserController {
       return "redirect:/report";
    }
    @GetMapping("/report-admin")
-   public String getAdminReport(Model model, HttpSession session){
+   public String getAdminReport(Model model, HttpSession session,
+                                @RequestParam(required = false) Integer empNo,
+                                @RequestParam(name = "startDate", required = false) String startDateStr,
+                                @RequestParam(name = "endDate", required = false) String endDateStr) {
+
+       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+       Date startDate = null;
+       Date endDate = null;
+       try {
+           if (startDateStr != null && !startDateStr.isEmpty()) {
+               startDate = new Date(sdf.parse(startDateStr).getTime());
+           }
+           if (endDateStr != null && !endDateStr.isEmpty()) {
+               endDate = new Date(sdf.parse(endDateStr).getTime());
+           }
+       } catch (ParseException e) {
+           e.printStackTrace();
+       }
        int no = (int) session.getAttribute("empNo");
-        List<User> users = userService.getUserByEmpNo(no);
+       String des = (String) session.getAttribute("designation");
+       List<User> users = null;
+       userService.getUserByEmpNo(no);
+       if (empNo != null) {
+           users = userService.getUserByEmpNo(no);
+           model.addAttribute("user",users);
+           return "my_report";
+       } else if (startDate != null || endDate != null) {
+           users = userService.getUserFromDates(startDate, endDate);
+           model.addAttribute("user",users);
+           return "admin_report";
+       } else if ("Manager".equals(des) || "HR".equals(des)) {
+           users = userService.getAllUsers();
+
         model.addAttribute("user",users);
-        return "my_report";
+        return "admin_report";
+       }
+       model.addAttribute("user", users);
+       return "my_report";
    }
     @PostMapping("/reject/{id}")
     public String updateRejectStatus(@PathVariable("id") Long id, RedirectAttributes redirectAttributes){
