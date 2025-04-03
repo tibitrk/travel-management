@@ -91,7 +91,7 @@ public class UserController {
     }
     @GetMapping("/report/edit/{id}")
     public String editReport(@PathVariable Long id, Model model){
-        model.addAttribute("user", userService.userById(id));
+            model.addAttribute("user", userService.userById(id));
         return "edit_report";
     }
 

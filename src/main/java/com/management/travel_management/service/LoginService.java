@@ -16,8 +16,8 @@ public class LoginService {
     public Login validateUser(int empNo) {
         return loginRepository.findUser(empNo);
     }
-    public void loginEntry(Login login){
-        loginRepository.save(login);
+    public Login loginEntry(Login login){
+       return loginRepository.save(login);
     }
     public void updatePassword(Login login){
        loginRepository.save(login);
